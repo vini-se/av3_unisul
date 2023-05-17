@@ -1,0 +1,64 @@
+TESTES DE ACEITAÇÃO
+
+User Story 1: Cadastrar uma nova ferramenta no sistema
+Teste de Aceitação:
+* Dado que estou na página de cadastro de ferramentas
+* Quando preencho os campos obrigatórios com as informações da nova ferramenta
+* E clico no botão de "Salvar"
+* Então a nova ferramenta é cadastrada com sucesso no sistema
+* E posso visualizar a ferramenta na lista de ferramentas cadastradas
+
+User Story 2: Cadastrar um novo amigo no sistema
+Teste de Aceitação:
+* Dado que estou na página de cadastro de amigos
+* Quando preencho os campos obrigatórios com as informações do novo amigo
+* E clico no botão de "Salvar"
+* Então o novo amigo é cadastrado com sucesso no sistema
+* E posso visualizar o amigo na lista de amigos cadastrados
+
+User Story 3: Registrar o empréstimo de uma ferramenta a um amigo
+Teste de Aceitação:
+* Dado que estou na página de registro de empréstimo
+* Quando seleciono uma ferramenta disponível e um amigo válido
+* E informo a data de empréstimo e a data de devolução
+* E clico no botão de "Registrar Empréstimo"
+* Então o empréstimo é registrado com sucesso no sistema
+* E a ferramenta é marcada como emprestada ao amigo selecionado
+
+User Story 4: Gerar um relatório de ferramentas e gastos
+Teste de Aceitação:
+* Dado que estou na página de relatório de ferramentas e gastos
+* Quando seleciono a opção de gerar o relatório
+* Então um relatório é exibido na tela contendo todas as ferramentas cadastradas e o custo total gasto
+
+User Story 5: Gerar um relatório de empréstimos ativos
+Teste de Aceitação:
+* Dado que estou na página de relatório de empréstimos ativos
+* Quando seleciono a opção de gerar o relatório
+* Então um relatório é exibido na tela contendo as ferramentas emprestadas que ainda não foram devolvidas
+
+User Story 6: Gerar um relatório de todos os empréstimos realizados
+Teste de Aceitação:
+* Dado que estou na página de relatório de todos os empréstimos
+* Quando seleciono a opção de gerar o relatório
+* Então um relatório é exibido na tela contendo todos os empréstimos realizados, incluindo empréstimos concluídos
+
+User Story 7: Identificar o amigo que realizou o maior número de empréstimos
+Teste de Aceitação:
+* Dado que estou na página de identificação do amigo com mais empréstimos
+* Quando seleciono a opção de identificar
+* Então o sistema exibe o amigo que realizou o maior número de empréstimos
+
+User Story 8: Notificar sobre ferramentas pendentes de devolução ao registrar um novo empréstimo
+Teste de Aceitação:
+
+data de empréstimo e a data de devolução
+* E clico no botão de "Registrar Empréstimo"
+* Então o sistema exibe uma mensagem de notificação informando que o amigo selecionado ainda possui ferramentas pendentes de devolução
+
+User Story 9: Convidar amigos para eventos e registrar convites na agenda do Google
+Teste de Aceitação:
+* Dado que estou na página de convite de amigos para eventos
+* Quando seleciono um amigo válido e informo os detalhes do evento, incluindo data e hora
+* E clico no botão de "Enviar Convite"
+* Então o sistema integra com a agenda do Google e registra o convite, compartilhando um lembrete do evento por e-mail com o amigo convidado
