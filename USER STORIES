@@ -1,0 +1,21 @@
+USER STORIES
+
+
+1. Como um usuário, quero poder cadastrar uma nova ferramenta no sistema, informando seu nome, marca e custo de aquisição, para que eu possa manter um registro completo das ferramentas que possuo.
+
+2. Como um usuário, quero poder cadastrar um novo amigo no sistema, informando seu nome e telefone, para que eu possa manter um registro dos meus amigos.
+
+3. Como um usuário, quero poder registrar o empréstimo de uma ferramenta a um amigo, indicando a data de empréstimo e a data de devolução, para que eu possa acompanhar os empréstimos realizados.
+
+4. Como um usuário, quero poder gerar um relatório que liste todas as ferramentas cadastradas e o custo total gasto em ferramentas, para que eu possa ter uma visão geral dos meus gastos.
+
+5. Como um usuário, quero poder gerar um relatório dos empréstimos ativos, mostrando as ferramentas emprestadas que ainda não foram devolvidas, para que eu possa acompanhar quais ferramentas estão emprestadas.
+
+6. Como um usuário, quero poder gerar um relatório de todos os empréstimos realizados, incluindo as ferramentas emprestadas e devolvidas, para que eu possa ter um histórico completo dos empréstimos.
+
+7. Como um usuário, quero ser capaz de identificar qual amigo realizou o maior número de empréstimos, para que eu possa reconhecer aqueles que mais utilizaram minhas ferramentas.
+
+8. Como um usuário, quero ser notificado pelo sistema ao registrar um novo empréstimo, caso o amigo ainda tenha ferramentas pendentes de devolução, para que eu possa lembrar o amigo sobre as ferramentas emprestadas.
+
+9. Como um usuário, quero poder convidar meus amigos para eventos e registrar esses convites na agenda do Google, para que eles recebam lembretes por e-mail sobre os eventos.
+Lembrando que essas são apenas algumas User Stories de exemplo com base nos requisitos mencionados. Pode ser necessário refinar e adicionar mais histórias, dependendo do contexto específico do software e das necessidades do seu tio-avô.
