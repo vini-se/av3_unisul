@@ -2,6 +2,8 @@ package View;
 
 import Model.Amigo;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -169,7 +171,7 @@ public class CadastrarAmigo extends javax.swing.JFrame {
 
             }
 
-            System.out.println(this.objAmigo.getMinhaLista().toString());
+            System.out.println(this.objAmigo.getListaAmigos().toString());
 
         } catch (Mensagens erro) {
             JOptionPane.showMessageDialog(null, erro.getMessage());
@@ -184,7 +186,7 @@ public class CadastrarAmigo extends javax.swing.JFrame {
 
     private void b_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_cancelarActionPerformed
         // TODO add your handling code here:
-        this.setVisible(false);
+//        this.setVisible(false);
 
     }//GEN-LAST:event_b_cancelarActionPerformed
 

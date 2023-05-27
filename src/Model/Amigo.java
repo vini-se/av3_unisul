@@ -34,9 +34,9 @@ public class Amigo {
     }
     
     // Retorna a Lista de Alunos(objetos)
-    public ArrayList getMinhaLista() {
+    public ArrayList getListaAmigos() {
         //return AlunoDAO.MinhaLista;
-        return dao.getMinhaLista();
+        return dao.getListaAmigos();
     }
     
     // Cadastra novo aluno

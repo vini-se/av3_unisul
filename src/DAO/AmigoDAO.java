@@ -19,7 +19,7 @@ import java.util.ArrayList;
  */
 public class AmigoDAO {
 
-    public static ArrayList<Amigo> MinhaLista = new ArrayList<Amigo>();
+    public ArrayList<Amigo> MinhaLista = new ArrayList<>();
 
     public AmigoDAO() {
     }
@@ -47,9 +47,6 @@ public class AmigoDAO {
         Connection connection = null;  //inst�ncia da conex�o
 
         try {
-
-            System.out.println("Entrou no TRY!");
-
             // Carregamento do JDBC Driver
             String driver = "com.mysql.cj.jdbc.Driver";
             Class.forName(driver);
@@ -84,7 +81,7 @@ public class AmigoDAO {
     }
 
     // Retorna a Lista de Amigos(objetos)
-    public ArrayList getMinhaLista() {
+    public ArrayList<Amigo> getListaAmigos() {
 
         MinhaLista.clear(); // Limpa nosso ArrayList
 
@@ -93,21 +90,20 @@ public class AmigoDAO {
             ResultSet res = stmt.executeQuery("SELECT * FROM tb_amigos");
             while (res.next()) {
 
-                String email = res.getString("curso");
-                int telefone = res.getInt("fase");
                 int id = res.getInt("id");
                 String nome = res.getString("nome");
+                long telefone = res.getLong("telefone");
+                String email = res.getString("email");
 
-                Amigo objeto = new Amigo(id, nome, email, telefone);
-
-                MinhaLista.add(objeto);
+                Amigo objetoAmigo = new Amigo(id, nome, email, telefone);
+                MinhaLista.add(objetoAmigo);
             }
 
             stmt.close();
 
         } catch (SQLException ex) {
         }
-
+        
         return MinhaLista;
     }
 
