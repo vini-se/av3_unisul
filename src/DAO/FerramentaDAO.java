@@ -112,7 +112,7 @@ public class FerramentaDAO {
     }
 
     // Cadastra novo ferrameta
-    public boolean InsertFerramentaBD(Ferramenta objeto) {
+    public boolean InsertFerramentaDB(Ferramenta objeto) {
         String sql = "INSERT INTO tb_ferramentas(id,nome,marca,custo_aquisicao) VALUES(?,?,?,?)";
 
         try {
@@ -132,5 +132,44 @@ public class FerramentaDAO {
             throw new RuntimeException(erro);
         }
 
+    }
+
+    public boolean UpdateFerramentaDB(Ferramenta objeto) {
+        String sql = "UPDATE tb_ferramentas SET nome=?, marca=?, custo_aquisicao=? WHERE id=?";
+
+        try {
+            PreparedStatement stmt = this.getConexao().prepareStatement(sql);
+
+            stmt.setString(1, objeto.getNome());
+            stmt.setString(2, objeto.getMarca());
+            stmt.setDouble(3, objeto.getCusto());
+            stmt.setInt(4, objeto.getId());
+
+            stmt.execute();
+            stmt.close();
+
+            return true;
+
+        } catch (SQLException erro) {
+            throw new RuntimeException(erro);
+        }
+    }
+
+    public boolean DeleteFerramentaDB(Ferramenta objeto) {
+        String sql = "DELETE FROM tb_ferramentas WHERE id=?";
+
+        try {
+            PreparedStatement stmt = this.getConexao().prepareStatement(sql);
+
+            stmt.setInt(1, objeto.getId());
+
+            stmt.execute();
+            stmt.close();
+
+            return true;
+
+        } catch (SQLException erro) {
+            throw new RuntimeException(erro);
+        }
     }
 }

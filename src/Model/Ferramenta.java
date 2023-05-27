@@ -42,12 +42,22 @@ public class Ferramenta {
     }
     
     // Cadastra novo ferramenta
-    public boolean InsertFerramentaBD(String marca, double custo, String nome) throws SQLException {
+    public boolean InsertFerramentaDB(String marca, double custo, String nome) throws SQLException {
         int id_insert = this.maiorID() + 1;
         Ferramenta objeto = new Ferramenta(id_insert, nome, marca, custo);
-        dao.InsertFerramentaBD(objeto);
+        dao.InsertFerramentaDB(objeto);
         return true;
+    }
 
+    public boolean UpdateFerramentaDB(int id, String marca, double custo, String nome) throws SQLException {
+        Ferramenta objeto = new Ferramenta(id, nome, marca, custo);
+        dao.UpdateFerramentaDB(objeto);
+        return true;
+    }
+
+    public boolean DeleteFerramentaDB(Ferramenta obj) throws SQLException {
+        dao.DeleteFerramentaDB(obj);
+        return true;
     }
 
     public int maiorID() throws SQLException{
