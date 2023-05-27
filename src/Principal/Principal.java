@@ -17,7 +17,7 @@ public class Principal {
     public static void main(String[] args) {
         // TODO code application logic here
         TelaPrincipal objetotela = new TelaPrincipal();
-        objetotela.setVisible(true);
+        objetotela.setVisible(true);   
     }
     
 }

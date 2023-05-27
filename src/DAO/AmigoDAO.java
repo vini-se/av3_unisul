@@ -129,4 +129,45 @@ public class AmigoDAO {
         }
 
     }
+
+    public boolean UpdateAmigoBD(Amigo objeto) {
+        String sql = "UPDATE tb_amigos SET nome = ?, email = ?, telefone = ? WHERE id = ?";
+
+        try {
+            PreparedStatement stmt = this.getConexao().prepareStatement(sql);
+
+            stmt.setString(1, objeto.getNome());
+            stmt.setString(2, objeto.getEmail());
+            stmt.setString(3, Long.toString(objeto.getTelefone()));
+            stmt.setInt(4, objeto.getId());
+
+            stmt.execute();
+            stmt.close();
+
+            return true;
+
+        } catch (SQLException erro) {
+            throw new RuntimeException(erro);
+        }
+
+    }
+
+    public boolean DeleteAmigoBD(Amigo objeto) {
+        String sql = "DELETE FROM tb_amigos WHERE id = ?";
+
+        try {
+            PreparedStatement stmt = this.getConexao().prepareStatement(sql);
+
+            stmt.setInt(1, objeto.getId());
+
+            stmt.execute();
+            stmt.close();
+
+            return true;
+
+        } catch (SQLException erro) {
+            throw new RuntimeException(erro);
+        }
+
+    }
 }

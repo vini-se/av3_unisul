@@ -35,13 +35,13 @@ public class Ferramenta {
     
     
     
-    // Retorna a Lista de Alunos(objetos)
-    public ArrayList getMinhaLista() {
-        //return AlunoDAO.MinhaLista;
+    // Retorna a Lista de Ferramenta(objetos)
+    public ArrayList<Ferramenta> getMinhaLista() {
+        //return ferramentaDAO.MinhaLista;
         return dao.getMinhaLista();
     }
     
-    // Cadastra novo aluno
+    // Cadastra novo ferramenta
     public boolean InsertFerramentaBD(String marca, double custo, String nome) throws SQLException {
         int id_insert = this.maiorID() + 1;
         Ferramenta objeto = new Ferramenta(id_insert, nome, marca, custo);

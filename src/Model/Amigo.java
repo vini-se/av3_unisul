@@ -33,22 +33,33 @@ public class Amigo {
         this.dao = new AmigoDAO();
     }
     
-    // Retorna a Lista de Alunos(objetos)
-    public ArrayList getListaAmigos() {
-        //return AlunoDAO.MinhaLista;
+    // Retorna a Lista de Amigos(objetos)
+    public ArrayList<Amigo> getListaAmigos() {
+        //return amigoDAO.MinhaLista;
         return dao.getListaAmigos();
     }
     
-    // Cadastra novo aluno
+    // Cadastra novo amigo
     public boolean InsertAmigoBD(String email, long telefone, String nome) throws SQLException {
         int id_insert = this.maiorID() + 1;
         Amigo objeto = new Amigo(id_insert, nome, email, telefone);
         dao.InsertAmigoBD(objeto);
         return true;
-
     }
 
-      public int maiorID() throws SQLException{
+    // Altera amigo
+    public boolean UpdateAmigoBD(int id, String email, long telefone, String nome) throws SQLException {
+        Amigo objeto = new Amigo(id, nome, email, telefone);
+        dao.UpdateAmigoBD(objeto);
+        return true;
+    }
+    
+    public boolean DeleteAmigoBD(Amigo obj) throws SQLException {
+        dao.DeleteAmigoBD(obj);
+        return true;
+    }
+
+    public int maiorID() throws SQLException{
         return dao.maiorID();
     }  
       
