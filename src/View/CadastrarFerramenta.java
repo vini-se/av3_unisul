@@ -2,6 +2,7 @@ package View;
 
 import Model.Ferramenta;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -33,7 +34,7 @@ public class CadastrarFerramenta extends javax.swing.JFrame {
         c_custo = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
 
-        setTitle("Cadastro de Amigo");
+        setTitle("Cadastro de ferrameta");
         setResizable(false);
 
         jLabel1.setText("Nome:");
@@ -183,8 +184,8 @@ public class CadastrarFerramenta extends javax.swing.JFrame {
 
     private void b_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_cancelarActionPerformed
         // TODO add your handling code here:
+       
         this.setVisible(false);
-
     }//GEN-LAST:event_b_cancelarActionPerformed
 
     private void c_marcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c_marcaActionPerformed

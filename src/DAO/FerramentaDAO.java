@@ -29,7 +29,7 @@ public class FerramentaDAO {
         int maiorID = 0;
         try {
             Statement stmt = this.getConexao().createStatement();
-            ResultSet res = stmt.executeQuery("SELECT MAX(id) id FROM tb_amigos");
+            ResultSet res = stmt.executeQuery("SELECT MAX(id) id FROM tb_ferrametas");
             res.next();
             maiorID = res.getInt("id");
 
@@ -83,24 +83,24 @@ public class FerramentaDAO {
         }
     }
 
-    // Retorna a Lista de Amigos(objetos)
-    public ArrayList getMinhaLista() {
+    // Retorna a Lista de ferrametas(objetos)
+    public ArrayList<Ferramenta> getMinhaLista() {
 
         MinhaLista.clear(); // Limpa nosso ArrayList
 
         try {
             Statement stmt = this.getConexao().createStatement();
-            ResultSet res = stmt.executeQuery("SELECT * FROM tb_amigos");
+            ResultSet res = stmt.executeQuery("SELECT * FROM tb_ferramentas");
             while (res.next()) {
 
-                String marca = res.getString("curso");
-                double custo = res.getDouble("fase");
                 int id = res.getInt("id");
                 String nome = res.getString("nome");
+                String marca = res.getString("marca");
+                Double custo_aquisicao = res.getDouble("custo_aquisicao");
 
-                Ferramenta objeto = new Ferramenta(id, nome, marca, custo);
+                Ferramenta objetoFerramenta = new Ferramenta(id, nome, marca, custo_aquisicao);
 
-                MinhaLista.add(objeto);
+                MinhaLista.add(objetoFerramenta);
             }
 
             stmt.close();
@@ -111,7 +111,7 @@ public class FerramentaDAO {
         return MinhaLista;
     }
 
-    // Cadastra novo amigo
+    // Cadastra novo ferrameta
     public boolean InsertFerramentaBD(Ferramenta objeto) {
         String sql = "INSERT INTO tb_ferramentas(id,nome,marca,custo_aquisicao) VALUES(?,?,?,?)";
 
