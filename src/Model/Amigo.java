@@ -40,22 +40,22 @@ public class Amigo {
     }
     
     // Cadastra novo amigo
-    public boolean InsertAmigoBD(String email, long telefone, String nome) throws SQLException {
+    public boolean InsertAmigoDB(String email, long telefone, String nome) throws SQLException {
         int id_insert = this.maiorID() + 1;
         Amigo objeto = new Amigo(id_insert, nome, email, telefone);
-        dao.InsertAmigoBD(objeto);
+        dao.InsertAmigoDB(objeto);
         return true;
     }
 
     // Altera amigo
-    public boolean UpdateAmigoBD(int id, String email, long telefone, String nome) throws SQLException {
+    public boolean UpdateAmigoDB(int id, String email, long telefone, String nome) throws SQLException {
         Amigo objeto = new Amigo(id, nome, email, telefone);
-        dao.UpdateAmigoBD(objeto);
+        dao.UpdateAmigoDB(objeto);
         return true;
     }
     
-    public boolean DeleteAmigoBD(Amigo obj) throws SQLException {
-        dao.DeleteAmigoBD(obj);
+    public boolean DeleteAmigoDB(Amigo obj) throws SQLException {
+        dao.DeleteAmigoDB(obj);
         return true;
     }
 

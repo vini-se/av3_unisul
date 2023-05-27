@@ -108,7 +108,7 @@ public class AmigoDAO {
     }
 
     // Cadastra novo amigo
-    public boolean InsertAmigoBD(Amigo objeto) {
+    public boolean InsertAmigoDB(Amigo objeto) {
         String sql = "INSERT INTO tb_amigos(id,nome,email,telefone) VALUES(?,?,?,?)";
 
         try {
@@ -130,7 +130,7 @@ public class AmigoDAO {
 
     }
 
-    public boolean UpdateAmigoBD(Amigo objeto) {
+    public boolean UpdateAmigoDB(Amigo objeto) {
         String sql = "UPDATE tb_amigos SET nome = ?, email = ?, telefone = ? WHERE id = ?";
 
         try {
@@ -152,7 +152,7 @@ public class AmigoDAO {
 
     }
 
-    public boolean DeleteAmigoBD(Amigo objeto) {
+    public boolean DeleteAmigoDB(Amigo objeto) {
         String sql = "DELETE FROM tb_amigos WHERE id = ?";
 
         try {

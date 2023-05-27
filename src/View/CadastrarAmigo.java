@@ -153,7 +153,7 @@ public class CadastrarAmigo extends javax.swing.JFrame {
             }
 
             // envia os dados para o Controlador cadastrar
-            if (this.objAmigo.InsertAmigoBD(email, telefone, nome)) {
+            if (this.objAmigo.InsertAmigoDB(email, telefone, nome)) {
                 JOptionPane.showMessageDialog(rootPane, "Amigo Cadastrado com Sucesso!");
 
                 // limpa campos da interface
