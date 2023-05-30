@@ -17,7 +17,7 @@ import java.util.ArrayList;
  *
  * @author vinic
  */
-public class AmigoDAO {
+public class AmigoDAO extends ConeccaoDAO {
 
     public ArrayList<Amigo> MinhaLista = new ArrayList<>();
 
@@ -40,44 +40,6 @@ public class AmigoDAO {
         }
 
         return maiorID;
-    }
-
-    public Connection getConexao() {
-
-        Connection connection = null;  //inst�ncia da conex�o
-
-        try {
-            // Carregamento do JDBC Driver
-            String driver = "com.mysql.cj.jdbc.Driver";
-            Class.forName(driver);
-
-            // Configurar a conex�o
-            String server = "localhost"; //caminho do MySQL
-            String database = "db_gerenciamento_ferramenta";
-            String url = "jdbc:mysql://" + server + ":3306/" + database + "?useTimezone=true&serverTimezone=UTC";
-            String user = "root";
-            String password = "1234";
-
-            connection = DriverManager.getConnection(url, user, password);
-
-            // Testando..
-            if (connection != null) {
-                System.out.println("Status: Conectado!");
-            } else {
-                System.out.println("Status: N�O CONECTADO!");
-            }
-
-            return connection;
-
-        } catch (ClassNotFoundException e) {  //Driver n�o encontrado
-            System.out.println("O driver nao foi encontrado. " + e.getMessage());
-            return null;
-
-        } catch (SQLException e) {
-            System.out.println(e);
-            System.out.println("Nao foi possivel conectar...");
-            return null;
-        }
     }
 
     // Retorna a Lista de Amigos(objetos)
