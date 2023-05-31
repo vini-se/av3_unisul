@@ -36,7 +36,7 @@ public class Ferramenta {
     
     
     // Retorna a Lista de Ferramenta(objetos)
-    public ArrayList<Ferramenta> getMinhaLista() {
+    public ArrayList<Ferramenta> getListaFerramentas() {
         //return ferramentaDAO.MinhaLista;
         return dao.getMinhaLista();
     }
@@ -55,9 +55,8 @@ public class Ferramenta {
         return true;
     }
 
-    public boolean DeleteFerramentaDB(Ferramenta obj) throws SQLException {
-        dao.DeleteFerramentaDB(obj);
-        return true;
+    public boolean DeleteFerramentaDB(int id) throws SQLException {
+        return dao.DeleteFerramentaDB(id);
     }
 
     public int maiorID() throws SQLException{

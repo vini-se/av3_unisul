@@ -162,7 +162,7 @@ public class CadastrarFerramenta extends javax.swing.JFrame {
 
             }
 
-            System.out.println(this.objFerramenta.getMinhaLista().toString());
+            System.out.println(this.objFerramenta.getListaFerramentas().toString());
 
         } catch (Mensagens erro) {
             JOptionPane.showMessageDialog(null, erro.getMessage());

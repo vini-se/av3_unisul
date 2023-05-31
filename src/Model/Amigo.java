@@ -54,9 +54,8 @@ public class Amigo {
         return true;
     }
     
-    public boolean DeleteAmigoDB(Amigo obj) throws SQLException {
-        dao.DeleteAmigoDB(obj);
-        return true;
+    public boolean DeleteAmigoDB(int id) throws SQLException {
+        return dao.DeleteAmigoDB(id);
     }
 
     public int maiorID() throws SQLException{

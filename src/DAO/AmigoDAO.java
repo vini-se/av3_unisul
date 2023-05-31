@@ -4,6 +4,7 @@
  */
 package DAO;
 
+import DAO.ConeccaoDAO;
 import Model.Amigo;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -12,6 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -23,7 +25,7 @@ public class AmigoDAO extends ConeccaoDAO {
 
     public AmigoDAO() {
     }
-    
+
     public int maiorID() throws SQLException {
 
         int maiorID = 0;
@@ -65,7 +67,7 @@ public class AmigoDAO extends ConeccaoDAO {
 
         } catch (SQLException ex) {
         }
-        
+
         return MinhaLista;
     }
 
@@ -114,22 +116,30 @@ public class AmigoDAO extends ConeccaoDAO {
 
     }
 
-    public boolean DeleteAmigoDB(Amigo objeto) {
+    public boolean DeleteAmigoDB(int id) {
         String sql = "DELETE FROM tb_amigos WHERE id = ?";
+        boolean deleteSuccessful = false;
 
         try {
             PreparedStatement stmt = this.getConexao().prepareStatement(sql);
 
-            stmt.setInt(1, objeto.getId());
+            stmt.setInt(1, id);
 
             stmt.execute();
             stmt.close();
 
-            return true;
+            deleteSuccessful = true;
 
-        } catch (SQLException erro) {
-            throw new RuntimeException(erro);
+        } catch (SQLException e) {
+            if (e.getErrorCode() == 1451) {
+                // Tratar o erro de restrição de chave estrangeira aqui
+                JOptionPane.showMessageDialog(null, "Não é possível excluir pois esse amigo atualmente possui uma ferramenta emprestada.");
+            } else {
+                // Lidar com outros erros SQL aqui
+                throw new RuntimeException(e);
+            }
         }
-
+        
+        return deleteSuccessful;
     }
 }
