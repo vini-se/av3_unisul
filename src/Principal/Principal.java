@@ -3,7 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 package Principal;
+import DAO.EmprestimoDAO;
+import Model.Emprestimo;
 import View.TelaPrincipal;
+import java.sql.SQLException;
 
 /**
  *
@@ -14,9 +17,9 @@ public class Principal {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         // TODO code application logic here
-        TelaPrincipal objetotela = new TelaPrincipal();
+        TelaPrincipal objetotela = new TelaPrincipal();;;
         objetotela.setVisible(true);   
     }
     

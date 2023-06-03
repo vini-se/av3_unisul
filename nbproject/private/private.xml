@@ -3,12 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/vinic/OneDrive/Documentos/NetBeansProjects/av3_unisul/src/View/TelaPrincipal.java</file>
-            <file>file:/C:/Users/vinic/OneDrive/Documentos/NetBeansProjects/av3_unisul/src/Principal/Principal.java</file>
-            <file>file:/C:/Users/vinic/OneDrive/Documentos/NetBeansProjects/av3_unisul/src/Model/Amigo.java</file>
-            <file>file:/C:/Users/vinic/OneDrive/Documentos/NetBeansProjects/av3_unisul/src/View/CadastrarAmigo.java</file>
-            <file>file:/C:/Users/vinic/OneDrive/Documentos/NetBeansProjects/av3_unisul/src/View/GerenciarAmigo.java</file>
-            <file>file:/C:/Users/vinic/OneDrive/Documentos/NetBeansProjects/av3_unisul/src/DAO/AmigoDAO.java</file>
+            <file>file:/C:/Users/vinic/OneDrive/Documentos/NetBeansProjects/av3_unisul/src/DAO/EmprestimoDAO.java</file>
+            <file>file:/C:/Users/vinic/OneDrive/Documentos/NetBeansProjects/av3_unisul/src/View/CadastrarEmprestimo.java</file>
+            <file>file:/C:/Users/vinic/OneDrive/Documentos/NetBeansProjects/av3_unisul/src/DAO/FerramentaDAO.java</file>
+            <file>file:/C:/Users/vinic/OneDrive/Documentos/NetBeansProjects/av3_unisul/src/View/GerenciarEmprestimo.java</file>
+            <file>file:/C:/Users/vinic/OneDrive/Documentos/NetBeansProjects/av3_unisul/src/Model/Emprestimo.java</file>
         </group>
     </open-files>
 </project-private>
