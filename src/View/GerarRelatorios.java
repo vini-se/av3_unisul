@@ -18,6 +18,8 @@ import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfPageEvent;
 import com.itextpdf.text.pdf.PdfWriter;
+import java.awt.Desktop;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -51,22 +53,30 @@ public class GerarRelatorios extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnGerarTeste = new javax.swing.JButton();
+        btnGerarFerramentas = new javax.swing.JButton();
+        btnGerarEmprestimos = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jButton1.setText("Gerar Relatório Amigos");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnGerarTeste.setText("Gerar Relatório Amigos");
+        btnGerarTeste.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnGerarTesteActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Gerar Relatório Ferramentas");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnGerarFerramentas.setText("Gerar Relatório Ferramentas");
+        btnGerarFerramentas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnGerarFerramentasActionPerformed(evt);
+            }
+        });
+
+        btnGerarEmprestimos.setText("Gerar Relatório Empréstimos");
+        btnGerarEmprestimos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGerarEmprestimosActionPerformed(evt);
             }
         });
 
@@ -77,24 +87,27 @@ public class GerarRelatorios extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnGerarFerramentas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnGerarTeste, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnGerarEmprestimos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(205, 205, 205))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(53, 53, 53)
-                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnGerarTeste, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(39, 39, 39)
-                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(162, 162, 162))
+                .addComponent(btnGerarFerramentas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(43, 43, 43)
+                .addComponent(btnGerarEmprestimos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(96, 96, 96))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnGerarTesteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGerarTesteActionPerformed
         // TODO add your handling code here:
 
         Emprestimo objEmprestimo = new Emprestimo();
@@ -145,7 +158,9 @@ public class GerarRelatorios extends javax.swing.JFrame {
             document.add(table);
 
             document.close();
-            JOptionPane.showMessageDialog(rootPane, "PDF gerado com sucesso!");
+
+            this.showMessageSuccessPDF(filePath);
+
         } catch (DocumentException e) {
             e.printStackTrace();
         } catch (FileNotFoundException ex) {
@@ -153,9 +168,9 @@ public class GerarRelatorios extends javax.swing.JFrame {
         }
 
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnGerarTesteActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnGerarFerramentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGerarFerramentasActionPerformed
         // TODO add your handling code here:
 
         Ferramenta objFerramenta = new Ferramenta();
@@ -178,10 +193,8 @@ public class GerarRelatorios extends javax.swing.JFrame {
 
             document.add(margin);
 
-            // Create a table with 6 columns
             PdfPTable table = new PdfPTable(5);
 
-            // Set table properties
             table.setWidthPercentage(100);
             table.setSpacingBefore(10f);
 
@@ -203,13 +216,13 @@ public class GerarRelatorios extends javax.swing.JFrame {
             cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
             cell.setMinimumHeight(28f);
             table.addCell(cell);
-            
+
             cell = new PdfPCell(new Phrase("Custo Total", headerFont));
             cell.setHorizontalAlignment(Element.ALIGN_CENTER);
             cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
             cell.setMinimumHeight(28f);
             table.addCell(cell);
-            
+
             cell = new PdfPCell(new Phrase("Quantidade", headerFont));
             cell.setHorizontalAlignment(Element.ALIGN_CENTER);
             cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
@@ -240,13 +253,158 @@ public class GerarRelatorios extends javax.swing.JFrame {
             document.add(paragraph);
 
             document.close();
-            JOptionPane.showMessageDialog(rootPane, "PDF gerado com sucesso!");
+
+            this.showMessageSuccessPDF(filePath);
+
         } catch (DocumentException e) {
             e.printStackTrace();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(GerarRelatorios.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnGerarFerramentasActionPerformed
+
+//    TO AQUI CARALHO 
+    private void btnGerarEmprestimosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGerarEmprestimosActionPerformed
+        // TODO add your handling code here:
+
+        Emprestimo objEmprestimo = new Emprestimo();
+
+        ArrayList<Emprestimo> lista = objEmprestimo.getListaPDF();
+
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyy_HH.mm.ss");
+        String dateTimeString = now.format(formatter);
+
+        Document document = new Document();
+        try {
+            String filePath = "src/Reports/RelatorioEmprestimos_" + dateTimeString + ".pdf";
+            PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(filePath));
+            writer.setPageEvent(new PDFHeaderFooter("Relatório de Empréstimos"));
+            document.open();
+
+            Paragraph margin = new Paragraph(" ");
+            margin.setSpacingAfter(15f);
+
+            document.add(margin);
+            document.add(margin);
+
+            PdfPTable table = new PdfPTable(4);
+
+            table.setWidthPercentage(100);
+            table.setSpacingBefore(10f);
+
+            Paragraph title1 = new Paragraph("Tabela de empréstimos ativos", FontFactory.getFont(FontFactory.HELVETICA_BOLD, 14));
+            title1.setAlignment(Element.ALIGN_CENTER);
+            document.add(title1);
+
+            document.add(margin);
+            
+            Font headerFont = FontFactory.getFont(FontFactory.COURIER_BOLD, 12);
+            PdfPCell cell = new PdfPCell(new Phrase("Amigo", headerFont));
+            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+            cell.setMinimumHeight(28f);
+            table.addCell(cell);
+
+            cell = new PdfPCell(new Phrase("Ferramenta", headerFont));
+            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+            cell.setMinimumHeight(28f);
+            table.addCell(cell);
+
+            cell = new PdfPCell(new Phrase("Emprestado em", headerFont));
+            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+            cell.setMinimumHeight(28f);
+            table.addCell(cell);
+
+            cell = new PdfPCell(new Phrase("Devolução em", headerFont));
+            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+            cell.setMinimumHeight(28f);
+            table.addCell(cell);
+
+            // Add table rows from the list
+            for (Emprestimo emprestimo : lista) {
+                if (emprestimo.getDeletado_em() == null) {
+                    table.addCell(String.valueOf(emprestimo.getNomeAmigo()));
+                    table.addCell(String.valueOf(emprestimo.getNomeFerramenta()));
+                    table.addCell(String.valueOf(emprestimo.getData_emprestimo()));
+                    table.addCell(String.valueOf(emprestimo.getData_devolucao()));
+                }
+            }
+
+            document.add(table);
+
+            document.newPage();
+
+            document.add(margin);
+            document.add(margin);
+
+            Paragraph title2 = new Paragraph("Tabela empréstimos devolvidos", FontFactory.getFont(FontFactory.HELVETICA_BOLD, 14));
+            title2.setAlignment(Element.ALIGN_CENTER);
+            document.add(title2);
+
+            document.add(margin);
+
+            PdfPTable table2 = new PdfPTable(5);
+
+            table2.setWidthPercentage(100);
+            table2.setSpacingBefore(10f);
+
+            PdfPCell cell2 = new PdfPCell(new Phrase("Amigo", headerFont));
+            cell2.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell2.setVerticalAlignment(Element.ALIGN_MIDDLE);
+            cell2.setMinimumHeight(28f);
+            table2.addCell(cell2);
+
+            cell2 = new PdfPCell(new Phrase("Ferramenta", headerFont));
+            cell2.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell2.setVerticalAlignment(Element.ALIGN_MIDDLE);
+            cell2.setMinimumHeight(28f);
+            table2.addCell(cell2);
+
+            cell2 = new PdfPCell(new Phrase("Emprestado em", headerFont));
+            cell2.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell2.setVerticalAlignment(Element.ALIGN_MIDDLE);
+            cell2.setMinimumHeight(28f);
+            table2.addCell(cell2);
+
+            cell2 = new PdfPCell(new Phrase("Devolução em", headerFont));
+            cell2.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell2.setVerticalAlignment(Element.ALIGN_MIDDLE);
+            cell2.setMinimumHeight(28f);
+            table2.addCell(cell2);
+
+            cell2 = new PdfPCell(new Phrase("Devolvido em", headerFont));
+            cell2.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell2.setVerticalAlignment(Element.ALIGN_MIDDLE);
+            cell2.setMinimumHeight(28f);
+            table2.addCell(cell2);
+
+            // Add table rows from the list
+            for (Emprestimo emprestimo : lista) {
+                if (emprestimo.getDeletado_em() != null) {
+                    table2.addCell(String.valueOf(emprestimo.getNomeAmigo()));
+                    table2.addCell(String.valueOf(emprestimo.getNomeFerramenta()));
+                    table2.addCell(String.valueOf(emprestimo.getData_emprestimo()));
+                    table2.addCell(String.valueOf(emprestimo.getData_devolucao()));
+                    table2.addCell(String.valueOf(emprestimo.getDeletado_em()));
+                }
+            }
+
+            document.add(table2);
+            document.close();
+
+            this.showMessageSuccessPDF(filePath);
+
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(GerarRelatorios.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (DocumentException ex) {
+            Logger.getLogger(GerarRelatorios.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_btnGerarEmprestimosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -283,8 +441,23 @@ public class GerarRelatorios extends javax.swing.JFrame {
         });
     }
 
+    private void showMessageSuccessPDF(String filePath) {
+
+        int resposta = JOptionPane.showConfirmDialog(rootPane, "PDF gerado com sucesso!\nDeseja abrir o arquivo recém gerado?", "Confirmação", JOptionPane.YES_NO_OPTION);
+
+        if (resposta == JOptionPane.YES_OPTION) {
+            try {
+                File file = new File(filePath);
+                Desktop.getDesktop().open(file);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnGerarEmprestimos;
+    private javax.swing.JButton btnGerarFerramentas;
+    private javax.swing.JButton btnGerarTeste;
     // End of variables declaration//GEN-END:variables
 }

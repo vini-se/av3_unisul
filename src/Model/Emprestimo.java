@@ -22,6 +22,7 @@ public class Emprestimo {
     private String nomeFerramenta;
     private String data_emprestimo;
     private String data_devolucao;
+    private String deletado_em;
     private final EmprestimoDAO dao;
 
     public Emprestimo() {
@@ -48,9 +49,22 @@ public class Emprestimo {
         this.dao = new EmprestimoDAO();
     }
 
+    public Emprestimo(int id, String nomeAmigo, String nomeFerramenta, String data_emprestimo, String data_devolucao, String deletado_em) {
+        this.id = id;
+        this.nomeAmigo = nomeAmigo;
+        this.nomeFerramenta = nomeFerramenta;
+        this.data_emprestimo = data_emprestimo;
+        this.data_devolucao = data_devolucao;
+        this.deletado_em = deletado_em;
+        this.dao = new EmprestimoDAO();
+    }  
+
     public ArrayList<Emprestimo> getListaEmprestimo() {
-        //return ferramentaDAO.MinhaLista;
         return dao.getMinhaLista();
+    }
+    
+    public ArrayList<Emprestimo> getListaPDF() {
+        return dao.getListaPDF();
     }
     
     public boolean InsertEmprestimoDB(int amigo_id, int ferramenta_id, String data_emprestimo, String data_devolucao) throws SQLException {
@@ -129,7 +143,13 @@ public class Emprestimo {
     public void setNomeFerramenta(String nomeFerramenta) {
         this.nomeFerramenta = nomeFerramenta;
     }
-    
-    
+
+    public String getDeletado_em() {
+        return deletado_em;
+    }
+
+    public void setDeletado_em(String deletado_em) {
+        this.deletado_em = deletado_em;
+    }
 
 }
