@@ -20,7 +20,6 @@ public class EmprestimoDAO extends ConeccaoDAO {
 
     public static ArrayList<Emprestimo> MinhaLista = new ArrayList<Emprestimo>();
 
-
     ;
 
     public EmprestimoDAO() {
@@ -32,19 +31,22 @@ public class EmprestimoDAO extends ConeccaoDAO {
 
         try {
             Statement stmt = this.getConexao().createStatement();
-            ResultSet res = stmt.executeQuery("SELECT te.id as 'id_emprestimo', a.nome as 'amigo', f.nome as 'ferramenta', data_devolucao\n"
+            ResultSet res = stmt.executeQuery("SELECT te.id as 'id_emprestimo', te.tb_amigos_id, a.nome as 'amigo', te.tb_ferramentas_id, f.nome as 'ferramenta',  DATE_FORMAT(data_emprestimo, '%d/%m/%Y') as 'data_emprestimo', DATE_FORMAT(data_devolucao, '%d/%m/%Y') as 'data_devolucao'\n"
                     + "FROM tb_emprestimos_ativos AS te\n"
                     + "LEFT JOIN tb_amigos a ON a.id = te.tb_amigos_id\n"
                     + "LEFT JOIN tb_ferramentas f ON f.id = te.tb_ferramentas_id\n"
-                    + "ORDER BY data_devolucao ASC");
+                    + "ORDER by data_devolucao ASC");
             while (res.next()) {
 
                 int id = res.getInt("id_emprestimo");
+                int id_amigo = res.getInt("tb_amigos_id");
+                int id_ferramenta = res.getInt("tb_ferramentas_id");
                 String nomeAmigo = res.getString("amigo");
                 String nomeFerramenta = res.getString("ferramenta");
+                String data_emprestimo = res.getString("data_emprestimo");
                 String data_devolucao = res.getString("data_devolucao");
 
-                Emprestimo objEmprestimo = new Emprestimo(id, nomeAmigo, nomeFerramenta, data_devolucao);
+                Emprestimo objEmprestimo = new Emprestimo(id, id_amigo, nomeAmigo, id_ferramenta, nomeFerramenta, data_emprestimo, data_devolucao);
 
                 MinhaLista.add(objEmprestimo);
             }
@@ -117,14 +119,14 @@ public class EmprestimoDAO extends ConeccaoDAO {
         }
 
     }
-    
-    public boolean DeleteEmprestimoDB(int id){
+
+    public boolean DeleteEmprestimoDB(int id) {
         String sql = "DELETE FROM tb_emprestimos_ativos WHERE id = ?";
-        
+
         try {
             PreparedStatement stmt = this.getConexao().prepareStatement(sql);
             stmt.setInt(1, id);
-            
+
             stmt.execute();
             stmt.close();
 
@@ -133,6 +135,30 @@ public class EmprestimoDAO extends ConeccaoDAO {
         } catch (SQLException erro) {
             throw new RuntimeException(erro);
         }
+    }
+
+    public boolean AmigoHasEmprestimo(int id) {
+        String sql = "SELECT id FROM tb_emprestimos_ativos WHERE tb_amigos_id = ?";
+        boolean temResultado = false;
+
+        try {
+            PreparedStatement stmt = this.getConexao().prepareStatement(sql);
+            stmt.setInt(1, id);
+
+            ResultSet resultSet = stmt.executeQuery();
+
+            if (resultSet.next()) {
+                temResultado = true;
+            }
+
+            resultSet.close();
+            stmt.close();
+
+        } catch (SQLException erro) {
+            throw new RuntimeException(erro);
+        }
+
+        return temResultado;
     }
 
 }

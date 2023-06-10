@@ -96,7 +96,7 @@ public class CadastrarEmprestimo extends javax.swing.JFrame {
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jTable_amigos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -115,6 +115,10 @@ public class CadastrarEmprestimo extends javax.swing.JFrame {
             }
         });
         jPanel_amigos.setViewportView(jTable_amigos);
+        if (jTable_amigos.getColumnModel().getColumnCount() > 0) {
+            jTable_amigos.getColumnModel().getColumn(0).setMinWidth(0);
+            jTable_amigos.getColumnModel().getColumn(0).setMaxWidth(0);
+        }
 
         jTable_ferramentas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -133,6 +137,10 @@ public class CadastrarEmprestimo extends javax.swing.JFrame {
             }
         });
         jPanel_ferramentas.setViewportView(jTable_ferramentas);
+        if (jTable_ferramentas.getColumnModel().getColumnCount() > 0) {
+            jTable_ferramentas.getColumnModel().getColumn(0).setMinWidth(0);
+            jTable_ferramentas.getColumnModel().getColumn(0).setMaxWidth(0);
+        }
 
         jButton_cadastrar.setText("Cadastrar Empréstimo");
         jButton_cadastrar.addActionListener(new java.awt.event.ActionListener() {
@@ -197,7 +205,19 @@ public class CadastrarEmprestimo extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Por favor, selecione um amigo e uma ferramenta para poder realizar o empréstimo.");
             return;
         }
-        
+
+        try {
+            if (objEmprestimo.AmigosHasEmprestimo(idAmigo)) {
+                int opcao = JOptionPane.showConfirmDialog(rootPane, "Esse mano aí já tem um empréstimo ativo.\nAinda deseja proseguir com o empréstimo?", "Confirmação", JOptionPane.YES_NO_OPTION);
+
+                if (opcao == JOptionPane.NO_OPTION || opcao == JOptionPane.CANCEL_OPTION || opcao == JOptionPane.CLOSED_OPTION) {
+                    return;
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CadastrarEmprestimo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
         Date dataAtual = new Date();
 
         Calendar calendario = Calendar.getInstance();
@@ -209,14 +229,16 @@ public class CadastrarEmprestimo extends javax.swing.JFrame {
         // Format the date to a string
         String data_emprestimo = sdf.format(dataAtual);
         String data_devolucao = sdf.format(duasSemanasAFrente);
-        
+
         try {
-            
+
             // envia os dados para o Controlador cadastrar
-            if (this.objEmprestimo.InsertEmprestimoDB(idAmigo, idFerramenta, data_emprestimo, data_devolucao)) {
-                JOptionPane.showMessageDialog(rootPane, "Empréstimo efetuado com Sucesso!");                
+            if (this.objEmprestimo.InsertEmprestimoDB(idAmigo, idFerramenta, data_emprestimo, data_devolucao)
+                    && this.objFerramenta.UpdateFerramentaEmprestimoDB(1, idFerramenta)) {
+                JOptionPane.showMessageDialog(rootPane, "Empréstimo efetuado com Sucesso!");
+                carregaTabelas();
             }
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(CadastrarEmprestimo.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -225,6 +247,7 @@ public class CadastrarEmprestimo extends javax.swing.JFrame {
 
     private void jButton_cadastrar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_cadastrar1ActionPerformed
         // TODO add your handling code here:
+        this.setVisible(false);        
     }//GEN-LAST:event_jButton_cadastrar1ActionPerformed
 
     private void jTable_amigosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_amigosMouseClicked
@@ -232,8 +255,8 @@ public class CadastrarEmprestimo extends javax.swing.JFrame {
 
         if (this.jTable_amigos.getSelectedRow() != -1) {
 
-            this.idAmigo = (int) this.jTable_amigos.getValueAt(this.jTable_amigos.getSelectedRow(),0);
-            
+            this.idAmigo = (int) this.jTable_amigos.getValueAt(this.jTable_amigos.getSelectedRow(), 0);
+
         }
     }//GEN-LAST:event_jTable_amigosMouseClicked
 

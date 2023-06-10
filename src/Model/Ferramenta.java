@@ -18,6 +18,8 @@ public class Ferramenta {
     private String nome;
     private String marca;
     private double custo;
+    private double custoTotal;
+    private int qntEstoque;
     private final FerramentaDAO dao; 
     
 
@@ -32,13 +34,24 @@ public class Ferramenta {
         this.custo = custo;
         this.dao = new FerramentaDAO();
     }
-    
-    
+
+    public Ferramenta(String nome, String marca, double custo, double custoTotal, int qntEstoque) {
+        this.nome = nome;
+        this.marca = marca;
+        this.custo = custo;
+        this.custoTotal = custoTotal;
+        this.qntEstoque = qntEstoque;
+        this.dao = new FerramentaDAO();
+
+    }    
     
     // Retorna a Lista de Ferramenta(objetos)
     public ArrayList<Ferramenta> getListaFerramentas() {
-        //return ferramentaDAO.MinhaLista;
         return dao.getMinhaLista();
+    }
+    
+    public ArrayList<Ferramenta> getListaPDF() {
+        return dao.getListaPDF();        
     }
     
     // Cadastra novo ferramenta
@@ -57,6 +70,10 @@ public class Ferramenta {
 
     public boolean DeleteFerramentaDB(int id) throws SQLException {
         return dao.DeleteFerramentaDB(id);
+    }
+    
+    public boolean UpdateFerramentaEmprestimoDB(int taEmprestado, int id) {
+        return dao.UpdateFerramentaEmprestimoDB(taEmprestado, id);
     }
 
     public int maiorID() throws SQLException{
@@ -94,7 +111,24 @@ public class Ferramenta {
     public void setCusto(double custo) {
         this.custo = custo;
     }
+
+    public double getCustoTotal() {
+        return custoTotal;
+    }
+
+    public void setCustoTotal(double custoTotal) {
+        this.custoTotal = custoTotal;
+    }
+
+    public int getQntEstoque() {
+        return qntEstoque;
+    }
+
+    public void setQntEstoque(int qntEstoque) {
+        this.qntEstoque = qntEstoque;
+    }
       
+    
     
 }
 

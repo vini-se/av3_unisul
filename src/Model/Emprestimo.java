@@ -37,10 +37,13 @@ public class Emprestimo {
         this.dao = new EmprestimoDAO();
     }
 
-    public Emprestimo(int id, String nomeAmigo, String nomeFerramenta, String data_devolucao) {
+    public Emprestimo(int id, int amigo_id, String nomeAmigo, int ferramenta_id, String nomeFerramenta, String data_emprestimo ,String data_devolucao) {
         this.id = id;
+        this.amigo_id = amigo_id;
+        this.ferramenta_id = ferramenta_id;
         this.nomeAmigo = nomeAmigo;
         this.nomeFerramenta = nomeFerramenta;
+        this.data_emprestimo = data_emprestimo;
         this.data_devolucao = data_devolucao;
         this.dao = new EmprestimoDAO();
     }
@@ -65,6 +68,10 @@ public class Emprestimo {
     public boolean DeleteEmprestimoDB(int id) throws SQLException {
         dao.DeleteEmprestimoDB(id);
         return true;
+    }
+    
+    public boolean AmigosHasEmprestimo(int id) throws SQLException {
+        return dao.AmigoHasEmprestimo(id);
     }
 
     public int getId() {

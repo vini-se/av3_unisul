@@ -1,6 +1,7 @@
 package View;
 
 import Model.Emprestimo;
+import Model.Ferramenta;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -13,6 +14,8 @@ public class GerenciarEmprestimo extends javax.swing.JFrame {
 
     private Emprestimo objemprestimo; // cria o v�nculo com o objemprestimo
     String data_devolucao;
+    int id = 0;
+    int idEmprestimo = 0;
 
     public GerenciarEmprestimo() {
         initComponents();
@@ -45,21 +48,21 @@ public class GerenciarEmprestimo extends javax.swing.JFrame {
 
         jTableEmprestimos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Id", "Nome", "Ferramenta", "Data de devolução"
+                "Id", "Nome", "idFerramenta", "Ferramenta", "Data de empréstimo", "Data de devolução"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, false, false, false
+                true, false, true, false, true, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -75,8 +78,12 @@ public class GerenciarEmprestimo extends javax.swing.JFrame {
         if (jTableEmprestimos.getColumnModel().getColumnCount() > 0) {
             jTableEmprestimos.getColumnModel().getColumn(0).setMinWidth(0);
             jTableEmprestimos.getColumnModel().getColumn(0).setMaxWidth(0);
-            jTableEmprestimos.getColumnModel().getColumn(1).setMinWidth(200);
-            jTableEmprestimos.getColumnModel().getColumn(2).setMinWidth(100);
+            jTableEmprestimos.getColumnModel().getColumn(1).setMinWidth(100);
+            jTableEmprestimos.getColumnModel().getColumn(2).setMinWidth(0);
+            jTableEmprestimos.getColumnModel().getColumn(2).setMaxWidth(0);
+            jTableEmprestimos.getColumnModel().getColumn(3).setMinWidth(100);
+            jTableEmprestimos.getColumnModel().getColumn(4).setMinWidth(100);
+            jTableEmprestimos.getColumnModel().getColumn(5).setMinWidth(100);
         }
 
         b_cancelar.setText("Cancelar");
@@ -181,8 +188,6 @@ public class GerenciarEmprestimo extends javax.swing.JFrame {
     this.data_devolucao = outputFormat.format(date);
 
         try {
-            // recebendo e validando dados da interface grÁfica.
-            int id = 0;
 
             if (this.jTableEmprestimos.getSelectedRow() == -1) {
                 throw new Mensagens("Primeiro Selecione um Emprestimo para Alterar");
@@ -212,10 +217,8 @@ public class GerenciarEmprestimo extends javax.swing.JFrame {
 
         if (this.jTableEmprestimos.getSelectedRow() != -1) {
 
-            String nome = this.jTableEmprestimos.getValueAt(this.jTableEmprestimos.getSelectedRow(), 1).toString();
-            String email = this.jTableEmprestimos.getValueAt(this.jTableEmprestimos.getSelectedRow(), 2).toString();
-            String telefone = this.jTableEmprestimos.getValueAt(this.jTableEmprestimos.getSelectedRow(), 3).toString();
-//            this.c_telefone.setText(telefone);
+            this.id = (int) this.jTableEmprestimos.getValueAt(this.jTableEmprestimos.getSelectedRow(), 0);
+            this.idEmprestimo = (int) this.jTableEmprestimos.getValueAt(this.jTableEmprestimos.getSelectedRow(), 2);
 
         }
     }//GEN-LAST:event_jTableEmprestimosMouseClicked
@@ -230,15 +233,16 @@ public class GerenciarEmprestimo extends javax.swing.JFrame {
                 id = Integer.parseInt(this.jTableEmprestimos.getValueAt(this.jTableEmprestimos.getSelectedRow(), 0).toString());
             }
 
-            // retorna 0 -> primeiro bot�o | 1 -> segundo bot�o | 2 -> terceiro bot�o
+            // retorna 0 -> primeiro bot�o | 1 -> segundo bot�o | 2 -> terceiro botão
             int resposta_usuario = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja APAGAR este Emprestimo ?");
 
             if (resposta_usuario == 0) {// clicou em SIM
                 
+                Ferramenta objFerramenta = new Ferramenta();
+                
                 // envia os dados para o Amigo processar
-                if (this.objemprestimo.DeleteEmprestimoDB(id)) {
+                if (this.objemprestimo.DeleteEmprestimoDB(id) && objFerramenta.UpdateFerramentaEmprestimoDB(0, this.idEmprestimo)) {
 
-                    // limpa os campos
                     JOptionPane.showMessageDialog(rootPane, "Empréstimo Apagado com Sucesso!");
 
                 }
@@ -276,7 +280,9 @@ public class GerenciarEmprestimo extends javax.swing.JFrame {
             modelo.addRow(new Object[]{
                 a.getId(),
                 a.getNomeAmigo(),
+                a.getFerramenta_id(),
                 a.getNomeFerramenta(),
+                a.getData_emprestimo(),
                 a.getData_devolucao()
             });
         }
