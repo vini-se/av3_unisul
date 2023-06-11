@@ -61,8 +61,6 @@ public class EmprestimoDAO extends ConeccaoDAO {
 
         return MinhaLista;
     }
-    
-    
 
     public ArrayList<Emprestimo> getListaPDF() {
 
@@ -78,7 +76,6 @@ public class EmprestimoDAO extends ConeccaoDAO {
                                               ORDER by deletado_em, data_emprestimo, amigo ASC """);
             while (res.next()) {
 
-                
                 int id = res.getInt("id_emprestimo");
                 String nomeAmigo = res.getString("amigo");
                 String nomeFerramenta = res.getString("ferramenta");
@@ -98,6 +95,37 @@ public class EmprestimoDAO extends ConeccaoDAO {
 
         return MinhaLista;
 
+    }
+
+    public ArrayList<Emprestimo> getListaPDFAmigo() {
+
+        MinhaLista.clear(); // Limpa nosso ArrayList
+
+        try {
+            Statement stmt = this.getConexao().createStatement();
+            ResultSet res = stmt.executeQuery("""
+                                              SELECT a.nome AS 'amigo', COUNT(*) AS 'total_emprestimos'
+                                              FROM tb_emprestimos AS te
+                                              LEFT JOIN tb_amigos a ON a.id = te.tb_amigos_id
+                                              GROUP BY amigo
+                                              ORDER BY total_emprestimos DESC
+                                              LIMIT 5; """);
+            while (res.next()) {
+
+                String nomeAmigo = res.getString("amigo");
+                int qntEmprestimo = res.getInt("total_emprestimos");
+
+                Emprestimo objetoEmprestimo = new Emprestimo(nomeAmigo, qntEmprestimo);
+                MinhaLista.add(objetoEmprestimo);
+            }
+
+            stmt.close();
+
+        } catch (SQLException ex) {
+            throw new Error(ex);
+        }
+
+        return MinhaLista;
     }
 
     public int maiorID() throws SQLException {
@@ -163,7 +191,7 @@ public class EmprestimoDAO extends ConeccaoDAO {
 
     public boolean DeleteEmprestimoDB(int id) {
         String sql = "UPDATE tb_emprestimos SET deletado_em = ? WHERE id = ?";
-        
+
         LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
         String dateTimeString = now.format(formatter);
