@@ -1,6 +1,8 @@
 package View;
 
 import Model.Amigo;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.sql.SQLException;
 import java.util.*;
 import java.util.logging.Level;
@@ -16,6 +18,12 @@ public class GerenciarAmigo extends javax.swing.JFrame {
         initComponents();
         this.objamigo = new Amigo(); // carrega objamigo de amigo
         this.carregaTabela();
+        setIconImage(getIconImage());
+    }
+    
+    public final Image getIconImage(){
+        Image icon = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Helpers/assets/971904.png"));
+        return icon;
     }
 
     /**

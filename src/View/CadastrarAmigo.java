@@ -1,6 +1,8 @@
 package View;
 
 import Model.Amigo;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -13,6 +15,13 @@ public class CadastrarAmigo extends javax.swing.JFrame {
     public CadastrarAmigo() {
         initComponents();
         this.objAmigo = new Amigo(); // carrega objeto vazio de amigo
+        initComponents();
+        setIconImage(getIconImage());
+    }
+    
+    public final Image getIconImage(){
+        Image icon = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Helpers/assets/971904.png"));
+        return icon;
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

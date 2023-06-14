@@ -128,6 +128,38 @@ public class EmprestimoDAO extends ConeccaoDAO {
         return MinhaLista;
     }
 
+    public ArrayList<Emprestimo> getListaPDFAmigoNuncaDevolveram() {
+
+        MinhaLista.clear(); // Limpa nosso ArrayList
+
+        try {
+            Statement stmt = this.getConexao().createStatement();
+            ResultSet res = stmt.executeQuery("""
+                                                SELECT
+                                                a.nome as 'amigo', COUNT(*) AS 'total_emprestimos'
+                                                FROM tb_emprestimos AS te
+                                                INNER JOIN tb_amigos a ON a.id = te.tb_amigos_id
+                                                WHERE
+                                                te.tb_amigos_id not in (select tesub.tb_amigos_id from tb_emprestimos as tesub where tesub.tb_amigos_id =te.tb_amigos_id and tesub.deletado_em is NOT null )
+                                                GROUP BY amigo
+                                                ORDER by amigo ASC """);
+            while (res.next()) {
+
+                String nomeAmigo = res.getString("amigo");
+                int qntEmprestimo = res.getInt("total_emprestimos");
+
+                Emprestimo objetoEmprestimo = new Emprestimo(nomeAmigo, qntEmprestimo);
+                MinhaLista.add(objetoEmprestimo);
+            }
+
+            stmt.close();
+
+        } catch (SQLException ex) {
+            throw new Error(ex);
+        }
+        return MinhaLista;
+    }
+
     public int maiorID() throws SQLException {
 
         int maiorID = 0;

@@ -2,6 +2,8 @@ package View;
 
 import Model.Emprestimo;
 import Model.Ferramenta;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -18,9 +20,15 @@ public class GerenciarEmprestimo extends javax.swing.JFrame {
     int idEmprestimo = 0;
 
     public GerenciarEmprestimo() {
-        initComponents();
         this.objemprestimo = new Emprestimo(); // carrega objemprestimo de emprestimo
         this.carregaTabela();
+        initComponents();
+        setIconImage(getIconImage());
+    }
+    
+    public final Image getIconImage(){
+        Image icon = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Helpers/assets/971904.png"));
+        return icon;
     }
 
     /**

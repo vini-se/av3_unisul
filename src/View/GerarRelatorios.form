@@ -24,13 +24,14 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="btnGerarFerramentas" max="32767" attributes="0"/>
-                  <Component id="btnGerarEmprestimos" alignment="0" max="32767" attributes="0"/>
-                  <Component id="btnGerarFerramentas1" alignment="1" max="32767" attributes="0"/>
+                  <Component id="btnGerarEmprestimos" alignment="1" max="32767" attributes="0"/>
+                  <Component id="btnGerarAmigosNunca" alignment="0" max="32767" attributes="0"/>
+                  <Component id="btnGerarAmigosTOP5" alignment="1" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="205" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -38,12 +39,14 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
-              <Component id="btnGerarFerramentas1" max="32767" attributes="0"/>
-              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-              <Component id="btnGerarFerramentas" max="32767" attributes="0"/>
-              <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
               <Component id="btnGerarEmprestimos" max="32767" attributes="0"/>
-              <EmptySpace min="-2" pref="96" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+              <Component id="btnGerarFerramentas" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+              <Component id="btnGerarAmigosTOP5" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+              <Component id="btnGerarAmigosNunca" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -65,12 +68,20 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGerarEmprestimosActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnGerarFerramentas1">
+    <Component class="javax.swing.JButton" name="btnGerarAmigosTOP5">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Gerar Relat&#xf3;rio Amigos"/>
+        <Property name="text" type="java.lang.String" value="Gerar Relat&#xf3;rio Amigos que mais realizaram empr&#xe9;stimos"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGerarFerramentas1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGerarAmigosTOP5ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnGerarAmigosNunca">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Gerar Relat&#xf3;rio Amigos que NUNCA devolveram"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGerarAmigosNuncaActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

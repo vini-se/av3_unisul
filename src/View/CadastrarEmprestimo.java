@@ -7,6 +7,8 @@ package View;
 import Model.Amigo;
 import Model.Emprestimo;
 import Model.Ferramenta;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -34,11 +36,17 @@ public class CadastrarEmprestimo extends javax.swing.JFrame {
      * Creates new form CadastrarEmprestimo
      */
     public CadastrarEmprestimo() {
+        setIconImage(getIconImage());
         initComponents();
         objAmigo = new Amigo();
         objEmprestimo = new Emprestimo();
         objFerramenta = new Ferramenta();
         carregaTabelas();
+    }
+    
+    public final Image getIconImage(){
+        Image icon = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Helpers/assets/971904.png"));
+        return icon;
     }
 
     public void carregaTabelas() {;

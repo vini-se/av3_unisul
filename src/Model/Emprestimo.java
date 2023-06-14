@@ -78,6 +78,10 @@ public class Emprestimo {
         return dao.getListaPDFAmigo();
     }
     
+    public ArrayList<Emprestimo> getListaPDFAmigoNuncaDevolveram() {
+        return dao.getListaPDFAmigoNuncaDevolveram();
+    }
+    
     public boolean InsertEmprestimoDB(int amigo_id, int ferramenta_id, String data_emprestimo, String data_devolucao) throws SQLException {
         int insert_id = dao.maiorID() + 1;
         Emprestimo obj = new Emprestimo(insert_id, amigo_id, ferramenta_id, data_emprestimo, data_devolucao);

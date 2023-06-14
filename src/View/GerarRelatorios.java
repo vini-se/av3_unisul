@@ -19,6 +19,8 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfPageEvent;
 import com.itextpdf.text.pdf.PdfWriter;
 import java.awt.Desktop;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -42,6 +44,12 @@ public class GerarRelatorios extends javax.swing.JFrame {
      */
     public GerarRelatorios() {
         initComponents();
+        setIconImage(getIconImage());
+    }
+    
+    public final Image getIconImage(){
+        Image icon = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Helpers/assets/971904.png"));
+        return icon;
     }
 
     /**
@@ -55,7 +63,8 @@ public class GerarRelatorios extends javax.swing.JFrame {
 
         btnGerarFerramentas = new javax.swing.JButton();
         btnGerarEmprestimos = new javax.swing.JButton();
-        btnGerarFerramentas1 = new javax.swing.JButton();
+        btnGerarAmigosTOP5 = new javax.swing.JButton();
+        btnGerarAmigosNunca = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -73,10 +82,17 @@ public class GerarRelatorios extends javax.swing.JFrame {
             }
         });
 
-        btnGerarFerramentas1.setText("Gerar Relatório Amigos");
-        btnGerarFerramentas1.addActionListener(new java.awt.event.ActionListener() {
+        btnGerarAmigosTOP5.setText("Gerar Relatório Amigos que mais realizaram empréstimos");
+        btnGerarAmigosTOP5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGerarFerramentas1ActionPerformed(evt);
+                btnGerarAmigosTOP5ActionPerformed(evt);
+            }
+        });
+
+        btnGerarAmigosNunca.setText("Gerar Relatório Amigos que NUNCA devolveram");
+        btnGerarAmigosNunca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGerarAmigosNuncaActionPerformed(evt);
             }
         });
 
@@ -85,23 +101,30 @@ public class GerarRelatorios extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(43, 43, 43)
+                .addGap(78, 78, 78)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnGerarFerramentas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnGerarEmprestimos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnGerarFerramentas1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(205, 205, 205))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnGerarEmprestimos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(0, 0, 0))
+                    .addComponent(btnGerarAmigosNunca, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnGerarAmigosTOP5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(0, 0, 0)))
+                .addGap(78, 78, 78))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(55, 55, 55)
-                .addComponent(btnGerarFerramentas1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(37, 37, 37)
-                .addComponent(btnGerarFerramentas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(43, 43, 43)
                 .addComponent(btnGerarEmprestimos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(96, 96, 96))
+                .addGap(40, 40, 40)
+                .addComponent(btnGerarFerramentas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(40, 40, 40)
+                .addComponent(btnGerarAmigosTOP5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(40, 40, 40)
+                .addComponent(btnGerarAmigosNunca, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(55, 55, 55))
         );
 
         pack();
@@ -343,7 +366,7 @@ public class GerarRelatorios extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnGerarEmprestimosActionPerformed
 
-    private void btnGerarFerramentas1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGerarFerramentas1ActionPerformed
+    private void btnGerarAmigosTOP5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGerarAmigosTOP5ActionPerformed
         // TODO add your handling code here:
 
         Emprestimo objEmprestimo = new Emprestimo();
@@ -407,7 +430,73 @@ public class GerarRelatorios extends javax.swing.JFrame {
             Logger.getLogger(GerarRelatorios.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-    }//GEN-LAST:event_btnGerarFerramentas1ActionPerformed
+    }//GEN-LAST:event_btnGerarAmigosTOP5ActionPerformed
+
+    private void btnGerarAmigosNuncaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGerarAmigosNuncaActionPerformed
+        // TODO add your handling code here:
+        
+        Emprestimo objEmprestimo = new Emprestimo();
+
+        ArrayList<Emprestimo> lista = objEmprestimo.getListaPDFAmigoNuncaDevolveram();
+
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyy_HH.mm.ss");
+        String dateTimeString = now.format(formatter);
+
+        Document document = new Document();
+        try {
+            String filePath = "src/Reports/RelatorioAmigosNuncaDevolveram_" + dateTimeString + ".pdf";
+            PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(filePath));
+            writer.setPageEvent(new PDFHeaderFooter("Relatório de Amigos que NUNCA devolveram"));
+            document.open();
+
+            Paragraph margin = new Paragraph(" ");
+            margin.setSpacingAfter(15f);
+
+            document.add(margin);
+            document.add(margin);
+
+            PdfPTable table = new PdfPTable(2);
+
+            table.setWidthPercentage(100);
+            table.setSpacingBefore(10f);
+
+            Paragraph title1 = new Paragraph("Tabela de quem nunca devolveu", FontFactory.getFont(FontFactory.HELVETICA_BOLD, 14));
+            title1.setAlignment(Element.ALIGN_CENTER);
+            document.add(title1);
+
+            document.add(margin);
+
+            Font headerFont = FontFactory.getFont(FontFactory.COURIER_BOLD, 12);
+            PdfPCell cell = new PdfPCell(new Phrase("Amigo", headerFont));
+            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+            cell.setMinimumHeight(28f);
+            table.addCell(cell);
+
+            cell = new PdfPCell(new Phrase("Total de empréstimos", headerFont));
+            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+            cell.setMinimumHeight(28f);
+            table.addCell(cell);
+
+            for (Emprestimo emprestimo : lista) {
+                table.addCell(String.valueOf(emprestimo.getNomeAmigo()));
+                table.addCell(String.valueOf(emprestimo.getQntEmprestimo()));
+            }
+
+            document.add(table);
+            document.close();
+
+            this.showMessageSuccessPDF(filePath);
+
+        } catch (DocumentException ex) {
+            Logger.getLogger(GerarRelatorios.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(GerarRelatorios.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_btnGerarAmigosNuncaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -459,8 +548,9 @@ public class GerarRelatorios extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnGerarAmigosNunca;
+    private javax.swing.JButton btnGerarAmigosTOP5;
     private javax.swing.JButton btnGerarEmprestimos;
     private javax.swing.JButton btnGerarFerramentas;
-    private javax.swing.JButton btnGerarFerramentas1;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,6 +1,8 @@
 package View;
 
 import Model.Ferramenta;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.sql.SQLException;
 import java.util.*;
 import java.util.logging.Level;
@@ -13,9 +15,15 @@ public class GerenciarFerramenta extends javax.swing.JFrame {
     private Ferramenta objferramenta; // cria o v�nculo com o objferramenta
 
     public GerenciarFerramenta() {
-        initComponents();
         this.objferramenta = new Ferramenta(); // carrega objferramenta de ferramenta
         this.carregaTabela();
+        initComponents();
+        setIconImage(getIconImage());
+    }
+    
+    public final Image getIconImage(){
+        Image icon = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Helpers/assets/971904.png"));
+        return icon;
     }
 
     /**
