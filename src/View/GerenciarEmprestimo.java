@@ -14,16 +14,16 @@ import javax.swing.table.DefaultTableModel;
 
 public class GerenciarEmprestimo extends javax.swing.JFrame {
 
-    private Emprestimo objemprestimo; // cria o v�nculo com o objemprestimo
+    private final Emprestimo objemprestimo; // cria o v�nculo com o objemprestimo
     String data_devolucao;
     int id = 0;
     int idEmprestimo = 0;
 
     public GerenciarEmprestimo() {
-        this.objemprestimo = new Emprestimo(); // carrega objemprestimo de emprestimo
-        this.carregaTabela();
         initComponents();
         setIconImage(getIconImage());
+        this.objemprestimo = new Emprestimo(); // carrega objemprestimo de emprestimo
+        this.carregaTabela();
     }
     
     public final Image getIconImage(){
@@ -108,7 +108,7 @@ public class GerenciarEmprestimo extends javax.swing.JFrame {
             }
         });
 
-        b_apagar.setText("Apagar");
+        b_apagar.setText("Marcar devolução");
         b_apagar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 b_apagarActionPerformed(evt);
@@ -138,7 +138,7 @@ public class GerenciarEmprestimo extends javax.swing.JFrame {
                 .addComponent(b_alterar)
                 .addGap(18, 18, 18)
                 .addComponent(b_apagar)
-                .addGap(160, 160, 160))
+                .addGap(126, 126, 126))
             .addGroup(layout.createSequentialGroup()
                 .addGap(147, 147, 147)
                 .addComponent(jLabel3)
@@ -236,13 +236,13 @@ public class GerenciarEmprestimo extends javax.swing.JFrame {
             // validando dados da interface gr�fica.
             int id = 0;
             if (this.jTableEmprestimos.getSelectedRow() == -1) {
-                throw new Mensagens("Primeiro Selecione um Emprestimo para APAGAR");
+                throw new Mensagens("Primeiro Selecione um Emprestimo para marcar a devolução");
             } else {
                 id = Integer.parseInt(this.jTableEmprestimos.getValueAt(this.jTableEmprestimos.getSelectedRow(), 0).toString());
             }
 
             // retorna 0 -> primeiro bot�o | 1 -> segundo bot�o | 2 -> terceiro botão
-            int resposta_usuario = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja APAGAR este Emprestimo ?");
+            int resposta_usuario = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja marcar esta devolução?");
 
             if (resposta_usuario == 0) {// clicou em SIM
                 

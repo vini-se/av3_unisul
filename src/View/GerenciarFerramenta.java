@@ -15,9 +15,9 @@ public class GerenciarFerramenta extends javax.swing.JFrame {
     private Ferramenta objferramenta; // cria o v�nculo com o objferramenta
 
     public GerenciarFerramenta() {
+        initComponents();
         this.objferramenta = new Ferramenta(); // carrega objferramenta de ferramenta
         this.carregaTabela();
-        initComponents();
         setIconImage(getIconImage());
     }
     

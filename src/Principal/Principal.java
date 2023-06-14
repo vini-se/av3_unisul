@@ -17,8 +17,8 @@ public class Principal {
      */
     public static void main(String[] args) throws SQLException {
         // TODO code application logic here        
-        TelaPrincipal objetotela = new TelaPrincipal();        
-        objetotela.setVisible(true); 
+        TelaPrincipal objetoTela = new TelaPrincipal();        
+        objetoTela.setVisible(true); 
     }
     
 }
