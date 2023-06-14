@@ -22,7 +22,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
     
     public final Image getIconImage(){
-        Image icon = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Helpers/assets/971904.png"));
+        Image icon = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Helpers/assets/Log.png"));
         return icon;
     }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

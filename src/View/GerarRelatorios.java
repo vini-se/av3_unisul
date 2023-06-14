@@ -16,7 +16,6 @@ import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
-import com.itextpdf.text.pdf.PdfPageEvent;
 import com.itextpdf.text.pdf.PdfWriter;
 import java.awt.Desktop;
 import java.awt.Image;
@@ -28,7 +27,6 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -48,7 +46,7 @@ public class GerarRelatorios extends javax.swing.JFrame {
     }
     
     public final Image getIconImage(){
-        Image icon = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Helpers/assets/971904.png"));
+        Image icon = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Helpers/assets/Log.png"));
         return icon;
     }
 
@@ -67,6 +65,7 @@ public class GerarRelatorios extends javax.swing.JFrame {
         btnGerarAmigosNunca = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Gerar relatórios");
 
         btnGerarFerramentas.setText("Gerar Relatório Ferramentas");
         btnGerarFerramentas.addActionListener(new java.awt.event.ActionListener() {
@@ -104,13 +103,9 @@ public class GerarRelatorios extends javax.swing.JFrame {
                 .addGap(78, 78, 78)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnGerarFerramentas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnGerarEmprestimos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(0, 0, 0))
+                    .addComponent(btnGerarEmprestimos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnGerarAmigosNunca, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnGerarAmigosTOP5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(0, 0, 0)))
+                    .addComponent(btnGerarAmigosTOP5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(78, 78, 78))
         );
         layout.setVerticalGroup(
@@ -143,7 +138,7 @@ public class GerarRelatorios extends javax.swing.JFrame {
 
         Document document = new Document();
         try {
-            String filePath = "src/Reports/RelatorioFerramentas_" + dateTimeString + ".pdf";
+            String filePath = "./reports/relatorioFerramentas_" + dateTimeString + ".pdf";
             PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(filePath));
             writer.setPageEvent(new PDFHeaderFooter("Relatório de Ferramentas"));
             document.open();
@@ -237,7 +232,7 @@ public class GerarRelatorios extends javax.swing.JFrame {
 
         Document document = new Document();
         try {
-            String filePath = "src/Reports/RelatorioEmprestimos_" + dateTimeString + ".pdf";
+            String filePath = "./reports/relatorioEmprestimos_" + dateTimeString + ".pdf";
             PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(filePath));
             writer.setPageEvent(new PDFHeaderFooter("Relatório de Empréstimos"));
             document.open();
@@ -379,7 +374,7 @@ public class GerarRelatorios extends javax.swing.JFrame {
 
         Document document = new Document();
         try {
-            String filePath = "src/Reports/RelatorioAmigos_" + dateTimeString + ".pdf";
+            String filePath = "./reports/relatorioAmigos_" + dateTimeString + ".pdf";
             PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(filePath));
             writer.setPageEvent(new PDFHeaderFooter("Relatório de Amigos"));
             document.open();
@@ -445,7 +440,7 @@ public class GerarRelatorios extends javax.swing.JFrame {
 
         Document document = new Document();
         try {
-            String filePath = "src/Reports/RelatorioAmigosNuncaDevolveram_" + dateTimeString + ".pdf";
+            String filePath = "./reports/relatorioAmigosNuncaDevolveram_" + dateTimeString + ".pdf";
             PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(filePath));
             writer.setPageEvent(new PDFHeaderFooter("Relatório de Amigos que NUNCA devolveram"));
             document.open();

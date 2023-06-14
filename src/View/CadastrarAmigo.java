@@ -20,7 +20,7 @@ public class CadastrarAmigo extends javax.swing.JFrame {
     }
     
     public final Image getIconImage(){
-        Image icon = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Helpers/assets/971904.png"));
+        Image icon = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Helpers/assets/Log.png"));
         return icon;
     }
 
