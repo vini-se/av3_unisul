@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 package Principal;
+
 import View.TelaPrincipal;
 import java.sql.SQLException;
 
@@ -17,9 +18,9 @@ public class Principal {
      */
     public static void main(String[] args) throws SQLException {
         // TODO code application logic here        
-        TelaPrincipal objetoTela = new TelaPrincipal();        
+        TelaPrincipal objetoTela = new TelaPrincipal();
         objetoTela.setVisible(true); 
-    }
-    
-}
 
+    }
+
+}

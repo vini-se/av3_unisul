@@ -207,7 +207,7 @@ public class GerenciarFerramenta extends javax.swing.JFrame {
             }
 
             if (this.c_marca.getText().length() <= 0) {
-                throw new Mensagens("Idade deve conter ao menos 2 caracteres.");
+                throw new Mensagens("Marca deve conter ao menos 2 caracteres.");
             } else {
                 marca = this.c_marca.getText();
             }
@@ -219,7 +219,7 @@ public class GerenciarFerramenta extends javax.swing.JFrame {
             }
 
             if (this.jTableFerramentas.getSelectedRow() == -1) {
-                throw new Mensagens("Primeiro Selecione um Ferramenta para Alterar");
+                throw new Mensagens("Primeiro Selecione uma ferramenta para alterar!");
             } else {
                 id = Integer.parseInt(this.jTableFerramentas.getValueAt(this.jTableFerramentas.getSelectedRow(), 0).toString());
             }
@@ -231,7 +231,7 @@ public class GerenciarFerramenta extends javax.swing.JFrame {
                 this.c_nome.setText("");
                 this.c_marca.setText("");
                 this.c_custo.setText("");
-                JOptionPane.showMessageDialog(rootPane, "Ferramenta Alterada com Sucesso!");
+                JOptionPane.showMessageDialog(rootPane, "Ferramenta alterada com sucesso!");
 
             }
             System.out.println(this.objferramenta.getListaFerramentas().toString());
@@ -266,13 +266,13 @@ public class GerenciarFerramenta extends javax.swing.JFrame {
             // validando dados da interface gr�fica.
             int id = 0;
             if (this.jTableFerramentas.getSelectedRow() == -1) {
-                throw new Mensagens("Primeiro Selecione um Ferramenta para APAGAR");
+                throw new Mensagens("Primeiro Selecione um ferramenta para APAGAR");
             } else {
                 id = Integer.parseInt(this.jTableFerramentas.getValueAt(this.jTableFerramentas.getSelectedRow(), 0).toString());
             }
 
             // retorna 0 -> primeiro bot�o | 1 -> segundo bot�o | 2 -> terceiro bot�o
-            int resposta_usuario = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja APAGAR este Ferramenta ?");
+            int resposta_usuario = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja APAGAR este ferramenta?");
 
             if (resposta_usuario == 0) {// clicou em SIM
 
@@ -283,7 +283,7 @@ public class GerenciarFerramenta extends javax.swing.JFrame {
                     this.c_nome.setText("");
                     this.c_marca.setText("");
                     this.c_custo.setText("");
-                    JOptionPane.showMessageDialog(rootPane, "Ferramenta Apagado com Sucesso!");
+                    JOptionPane.showMessageDialog(rootPane, "Ferramenta apagada com Sucesso!");
 
                 }
 
@@ -319,7 +319,7 @@ public class GerenciarFerramenta extends javax.swing.JFrame {
         modelo.setNumRows(0);
 
         ArrayList<Ferramenta> minhalista = new ArrayList<>();
-        minhalista = objferramenta.getListaFerramentas();
+        minhalista = objferramenta.getListaFerramentas("v2");
 
         for (Ferramenta a : minhalista) {
             modelo.addRow(new Object[]{

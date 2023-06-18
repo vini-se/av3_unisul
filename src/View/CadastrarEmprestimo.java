@@ -216,7 +216,7 @@ public class CadastrarEmprestimo extends javax.swing.JFrame {
 
         try {
             if (objEmprestimo.AmigosHasEmprestimo(idAmigo)) {
-                int opcao = JOptionPane.showConfirmDialog(rootPane, "Esse mano aí já tem um empréstimo ativo.\nAinda deseja proseguir com o empréstimo?", "Confirmação", JOptionPane.YES_NO_OPTION);
+                int opcao = JOptionPane.showConfirmDialog(rootPane, "Essa pessoa já tem um empréstimo ativo.\nAinda deseja proseguir com o empréstimo?", "Confirmação", JOptionPane.YES_NO_OPTION);
 
                 if (opcao == JOptionPane.NO_OPTION || opcao == JOptionPane.CANCEL_OPTION || opcao == JOptionPane.CLOSED_OPTION) {
                     return;

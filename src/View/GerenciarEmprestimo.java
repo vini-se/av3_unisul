@@ -198,7 +198,7 @@ public class GerenciarEmprestimo extends javax.swing.JFrame {
         try {
 
             if (this.jTableEmprestimos.getSelectedRow() == -1) {
-                throw new Mensagens("Primeiro Selecione um Emprestimo para Alterar");
+                throw new Mensagens("Primeiro Selecione um empréstimo para Alterar");
             } else {
                 id = Integer.parseInt(this.jTableEmprestimos.getValueAt(this.jTableEmprestimos.getSelectedRow(), 0).toString());
             }
@@ -207,13 +207,13 @@ public class GerenciarEmprestimo extends javax.swing.JFrame {
             if (this.objemprestimo.UpdateEmprestimoDB(id, data_devolucao)) {
 
                 // limpa os campos
-                JOptionPane.showMessageDialog(rootPane, "Emprestimo Alterado com Sucesso!");
+                JOptionPane.showMessageDialog(rootPane, "Empréstimo Alterado com Sucesso!");
 
             }
         } catch (Mensagens erro) {
             JOptionPane.showMessageDialog(null, erro.getMessage());
         } catch (NumberFormatException erro2) {
-            JOptionPane.showMessageDialog(null, "Informe um n�mero.");
+            JOptionPane.showMessageDialog(null, "Informe um número.");
         } catch (SQLException ex) {
             Logger.getLogger(GerenciarEmprestimo.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
@@ -236,7 +236,7 @@ public class GerenciarEmprestimo extends javax.swing.JFrame {
             // validando dados da interface gr�fica.
             int id = 0;
             if (this.jTableEmprestimos.getSelectedRow() == -1) {
-                throw new Mensagens("Primeiro Selecione um Emprestimo para marcar a devolução");
+                throw new Mensagens("Primeiro selecione um empréstimo para marcar a devolução");
             } else {
                 id = Integer.parseInt(this.jTableEmprestimos.getValueAt(this.jTableEmprestimos.getSelectedRow(), 0).toString());
             }
@@ -251,7 +251,7 @@ public class GerenciarEmprestimo extends javax.swing.JFrame {
                 // envia os dados para o Amigo processar
                 if (this.objemprestimo.DeleteEmprestimoDB(id) && objFerramenta.UpdateFerramentaEmprestimoDB(0, this.idEmprestimo)) {
 
-                    JOptionPane.showMessageDialog(rootPane, "Empréstimo Apagado com Sucesso!");
+                    JOptionPane.showMessageDialog(rootPane, "Empréstimo devolvido com Sucesso!");
 
                 }
             }

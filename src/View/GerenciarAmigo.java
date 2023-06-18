@@ -208,7 +208,7 @@ public class GerenciarAmigo extends javax.swing.JFrame {
             }
 
             if (this.c_email.getText().length() <= 0) {
-                throw new Mensagens("Idade deve ser n�mero e maior que zero.");
+                throw new Mensagens("Idade deve ser número e maior que zero.");
             } else {
                 email = this.c_email.getText();
             }
@@ -220,7 +220,7 @@ public class GerenciarAmigo extends javax.swing.JFrame {
             }
 
             if (this.jTableAmigos.getSelectedRow() == -1) {
-                throw new Mensagens("Primeiro Selecione um Amigo para Alterar");
+                throw new Mensagens("Primeiro selecione um amigo para alterar");
             } else {
                 id = Integer.parseInt(this.jTableAmigos.getValueAt(this.jTableAmigos.getSelectedRow(), 0).toString());
             }
@@ -232,14 +232,14 @@ public class GerenciarAmigo extends javax.swing.JFrame {
                 this.c_nome.setText("");
                 this.c_email.setText("");
                 this.c_telefone.setText("");
-                JOptionPane.showMessageDialog(rootPane, "Amigo Alterado com Sucesso!");
+                JOptionPane.showMessageDialog(rootPane, "Amigo alterado com sucesso!");
 
             }
             System.out.println(this.objamigo.getListaAmigos().toString());
         } catch (Mensagens erro) {
             JOptionPane.showMessageDialog(null, erro.getMessage());
         } catch (NumberFormatException erro2) {
-            JOptionPane.showMessageDialog(null, "Informe um n�mero.");
+            JOptionPane.showMessageDialog(null, "Informe um número.");
         } catch (SQLException ex) {
             Logger.getLogger(GerenciarAmigo.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
@@ -267,13 +267,13 @@ public class GerenciarAmigo extends javax.swing.JFrame {
             // validando dados da interface gr�fica.
             int id = 0;
             if (this.jTableAmigos.getSelectedRow() == -1) {
-                throw new Mensagens("Primeiro Selecione um Amigo para APAGAR");
+                throw new Mensagens("Primeiro selecione um amigo para APAGAR");
             } else {
                 id = Integer.parseInt(this.jTableAmigos.getValueAt(this.jTableAmigos.getSelectedRow(), 0).toString());
             }
 
             // retorna 0 -> primeiro bot�o | 1 -> segundo bot�o | 2 -> terceiro bot�o
-            int resposta_usuario = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja APAGAR este Amigo ?");
+            int resposta_usuario = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja APAGAR este Amigo?");
 
             if (resposta_usuario == 0) {// clicou em SIM
 
@@ -284,7 +284,7 @@ public class GerenciarAmigo extends javax.swing.JFrame {
                     this.c_nome.setText("");
                     this.c_email.setText("");
                     this.c_telefone.setText("");
-                    JOptionPane.showMessageDialog(rootPane, "Amigo Apagado com Sucesso!");
+                    JOptionPane.showMessageDialog(rootPane, "Amigo apagado com sucesso!");
 
                 }
 

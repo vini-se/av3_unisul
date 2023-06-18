@@ -49,6 +49,11 @@ public class Ferramenta {
     public ArrayList<Ferramenta> getListaFerramentas() {
         return dao.getMinhaLista();
     }
+    // Retorna a Lista de Ferramenta(objetos)
+    public ArrayList<Ferramenta> getListaFerramentas(String v2) {
+        return dao.getMinhaLista("v2");
+    }
+    
     
     public ArrayList<Ferramenta> getListaPDF() {
         return dao.getListaPDF();        

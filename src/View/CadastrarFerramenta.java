@@ -146,7 +146,7 @@ public class CadastrarFerramenta extends javax.swing.JFrame {
             }
 
             if (this.c_custo.getText().length() <= 0) {
-                throw new Mensagens("Telefone deve ser número e maior que zero.");
+                throw new Mensagens("Custo deve ser número e maior que zero.");
             } else {
                 custo = Double.parseDouble(this.c_custo.getText());  
             }
@@ -161,7 +161,7 @@ public class CadastrarFerramenta extends javax.swing.JFrame {
 
             // envia os dados para o Controlador cadastrar
             if (this.objFerramenta.InsertFerramentaDB(marca, custo, nome)) {
-                JOptionPane.showMessageDialog(rootPane, "Ferramenta Cadastrado com Sucesso!");
+                JOptionPane.showMessageDialog(rootPane, "Ferramenta Cadastrada com Sucesso!");
 
                 // limpa campos da interface
                 this.c_nome.setText("");

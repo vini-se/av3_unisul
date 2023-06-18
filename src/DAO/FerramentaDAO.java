@@ -68,6 +68,33 @@ public class FerramentaDAO extends ConeccaoDAO {
 
         return MinhaLista;
     }
+    // Retorna a Lista de ferrametas(objetos)
+    public ArrayList<Ferramenta> getMinhaLista(String v2) {
+
+        MinhaLista.clear(); // Limpa nosso ArrayList
+
+        try {
+            Statement stmt = this.getConexao().createStatement();
+            ResultSet res = stmt.executeQuery("SELECT * FROM tb_ferramentas ORDER BY nome ASC");
+            while (res.next()) {
+
+                int id = res.getInt("id");
+                String nome = res.getString("nome");
+                String marca = res.getString("marca");
+                Double custo_aquisicao = res.getDouble("custo_aquisicao");
+
+                Ferramenta objetoFerramenta = new Ferramenta(id, nome, marca, custo_aquisicao);
+
+                MinhaLista.add(objetoFerramenta);
+            }
+
+            stmt.close();
+
+        } catch (SQLException ex) {
+        }
+
+        return MinhaLista;
+    }
 
     // Cadastra novo ferrameta
     public boolean InsertFerramentaDB(Ferramenta objeto) {

@@ -15,7 +15,6 @@ public class CadastrarAmigo extends javax.swing.JFrame {
     public CadastrarAmigo() {
         initComponents();
         this.objAmigo = new Amigo(); // carrega objeto vazio de amigo
-        initComponents();
         setIconImage(getIconImage());
     }
     
@@ -142,7 +141,7 @@ public class CadastrarAmigo extends javax.swing.JFrame {
             String nome = "";
             String email = "";
             long telefone = 0;
-
+            
             if (this.c_nome.getText().length() < 2) {
                 throw new Mensagens("Nome deve conter ao menos 2 caracteres.");
             } else {
